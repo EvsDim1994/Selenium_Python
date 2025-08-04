@@ -36,7 +36,7 @@ class TestLogin():
         driver.find_element(*LoginForm.LOGGIN_BUTTON).click()
         # Нажать на кпопку "Выйти"
         driver.find_element(*MainPageLocators.EXIT).click()
-         # Проверка выхода из аккаунта
+        # Проверка выхода из аккаунта
         assert WebDriverWait(driver, 5).until(expected_conditions.invisibility_of_element_located((MainPageLocators.USER_LOGO)))
         assert WebDriverWait(driver, 5).until(expected_conditions.invisibility_of_element_located((MainPageLocators.USER_NAME)))
         assert WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((MainPageLocators.LOGGIN_BUTTON)))

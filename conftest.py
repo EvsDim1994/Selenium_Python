@@ -2,7 +2,7 @@ import random
 import pytest
 from selenium import webdriver
 from selenium.webdriver.remote.webdriver import WebDriver
-from src.locators import MainPageLocators
+from src.locators import LoginForm, MainPageLocators
 from src.locators import RegistrationFormLocators
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
@@ -44,9 +44,9 @@ def create_account(driver, email, password):
         # Нажать на кнопку "Вход и регистрация"
         driver.find_element(*MainPageLocators.LOGGIN_BUTTON).click()
         # Ожидание появления кнопки "Нет аккаунта"
-        WebDriverWait(driver, 5).until(expected_conditions.element_to_be_clickable((RegistrationFormLocators.WITHOUT_ACCOUNT_BUTTON)))
+        WebDriverWait(driver, 5).until(expected_conditions.element_to_be_clickable((LoginForm.WITHOUT_ACCOUNT_BUTTON)))
         # Открытие формы регистрации
-        driver.find_element(*RegistrationFormLocators.WITHOUT_ACCOUNT_BUTTON).click()
+        driver.find_element(*LoginForm.WITHOUT_ACCOUNT_BUTTON).click()
         WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((RegistrationFormLocators.REGISTRATION)))
         # Ввод данных на регистрационное форме
         driver.find_element(*RegistrationFormLocators.EMAIL).send_keys(email)

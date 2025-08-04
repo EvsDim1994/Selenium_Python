@@ -9,7 +9,6 @@ class MainPageLocators():
 
 
 class RegistrationFormLocators():
-    WITHOUT_ACCOUNT_BUTTON = (By.XPATH, ".//button[text()='Нет аккаунта']")
     REGISTRATION = (By.XPATH, ".//h1[text()='Зарегистрироваться']")
     EMAIL = (By.XPATH, ".//input[@name='email']")
     PASSWORD = (By.XPATH, ".//input[@name='password']")
@@ -18,6 +17,7 @@ class RegistrationFormLocators():
     ERROR = (By.XPATH, ".//span[text()='Ошибка']")
 
 class LoginForm():
+    WITHOUT_ACCOUNT_BUTTON = (By.XPATH, ".//button[text()='Нет аккаунта']")
     INPUT_EMAIL = (By.XPATH, ".//input[@placeholder='Введите Email']")
     INPUT_PASSWORD = (By.XPATH, ".//input[@placeholder='Пароль']")
     LOGGIN_BUTTON = (By.XPATH, ".//button[text()='Войти']")
