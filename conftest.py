@@ -12,7 +12,7 @@ def driver():
     options = webdriver.ChromeOptions()
     options.add_argument("--start-maximized")
     driver = webdriver.Chrome(options=options)
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(5)
     return driver
 
 
@@ -47,10 +47,11 @@ def create_account(driver, email, password):
         WebDriverWait(driver, 5).until(expected_conditions.element_to_be_clickable((LoginForm.WITHOUT_ACCOUNT_BUTTON)))
         # Открытие формы регистрации
         driver.find_element(*LoginForm.WITHOUT_ACCOUNT_BUTTON).click()
-        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((RegistrationFormLocators.REGISTRATION)))
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((RegistrationFormLocators.REGISTRATION_BUTTON)))
         # Ввод данных на регистрационное форме
         driver.find_element(*RegistrationFormLocators.EMAIL).send_keys(email)
         driver.find_element(*RegistrationFormLocators.PASSWORD).send_keys(password)
-        driver.find_element(*RegistrationFormLocators.SUBMIT_PASSWORD).send_keys(password)
+        driver.find_element(*RegistrationFormLocators.SUBMIT_PASSWORD_BUTTON).send_keys(password)
         # Создание аккаунта
         driver.find_element(*RegistrationFormLocators.CREATE_ACCOUNT_BUTTON).click()
+
