@@ -6,6 +6,7 @@ class MainPageLocators():
     USER_LOGO = (By.CLASS_NAME, "circleSmall")
     USER_NAME = (By.XPATH, ".//h3[contains(text(), 'User')]")
     EXIT_BUTTON = (By.XPATH, ".//button[text()='Выйти']")
+    APPLY_BUTTON = (By.XPATH, ".//button[text()='Применить']")
 
 
 class RegistrationFormLocators():
