@@ -36,7 +36,8 @@ class TestCreateAds:
         # Нажатие на кнопку "Опубликовать"
         WebDriverWait(driver, 5).until(expected_conditions.element_to_be_clickable(AdsForm.PLACE_ADS_BUTTON)).click()
         # Переход в личный кабинет пользователя
-        WebDriverWait(driver, 10).until(expected_conditions.element_to_be_clickable(MainPageLocators.USER_LOGO)).click()
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(MainPageLocators.APPLY_BUTTON))
+        WebDriverWait(driver, 5).until(expected_conditions.element_to_be_clickable(MainPageLocators.USER_LOGO)).click()
         WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(AdsPage.PROFILE_TEXT))
         # Проверка создания объявления
         assert driver.find_element(*AdsPage.DESCRIPTION_TEXT).text == "Товар"
