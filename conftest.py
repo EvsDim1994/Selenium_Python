@@ -13,19 +13,14 @@ def driver():
     options.add_argument("--start-maximized")
     driver = webdriver.Chrome(options=options)
     driver.implicitly_wait(5)
-    return driver
-
+    yield driver
+    # закрытие драйвера
+    driver.quit()
 
 @pytest.fixture(scope='function')
 def main_page(driver: WebDriver):
     # открываем главную страницу
     driver.get("https://qa-desk.stand.praktikum-services.ru")
-
-@pytest.fixture(scope='function')
-def teardown(driver: WebDriver):
-    yield
-    # закрытие драйвера
-    driver.quit()
 
 @pytest.fixture(scope='function')
 def email():

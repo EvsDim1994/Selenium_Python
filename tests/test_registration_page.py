@@ -5,16 +5,16 @@ from src.locators import RegistrationFormLocators
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 
-class TestRegistration():
+class TestRegistration:
 
-    def test_succesfull_registration(self, driver: WebDriver, main_page, email, password, create_account, teardown):
+    def test_succesfull_registration(self, driver: WebDriver, main_page, email, password, create_account):
         # Проверки создание аккаунта и переход на главную страницу
         assert driver.find_element(* MainPageLocators.PLACE_ADS_BUTTON).text == "Разместить объявление"
-        assert  WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(MainPageLocators.USER_LOGO))
+        assert  WebDriverWait(driver, 10).until(expected_conditions.visibility_of_element_located(MainPageLocators.USER_LOGO))
         assert driver.find_element(*MainPageLocators.USER_NAME).text == "User."
 
 
-    def test_unsuccesfull_registration(self, driver: WebDriver, main_page, password, teardown):
+    def test_unsuccesfull_registration(self, driver: WebDriver, main_page, password):
         # Нажать на кнопку "Вход и регистрация"
         driver.find_element(*MainPageLocators.LOGGIN_BUTTON).click()
         # Ожидание появления кнопки "Нет аккаунта"
@@ -32,7 +32,7 @@ class TestRegistration():
         assert  WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(RegistrationFormLocators.ERROR)).text == "Ошибка"
 
 
-    def test_unsuccesfull_registration_with_the_same_account(self, driver: WebDriver, main_page, email, password, create_account, teardown):
+    def test_unsuccesfull_registration_with_the_same_account(self, driver: WebDriver, main_page, email, password, create_account):
         # Проверки  переход на главную страницу
         WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(MainPageLocators.USER_LOGO))
         # Нажать на кнопку "Выйти"

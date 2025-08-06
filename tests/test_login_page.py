@@ -4,9 +4,9 @@ from src.locators import LoginForm
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 
-class TestLogin():
+class TestLogin:
 
-    def test_succesfull_login(self, driver: WebDriver, main_page, email, password, create_account, teardown):
+    def test_succesfull_login(self, driver: WebDriver, main_page, email, password, create_account):
         # Проверки  переход на главную страницу
         WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(MainPageLocators.USER_LOGO))
         # Нажать на кнопку "Выйти"
@@ -22,13 +22,13 @@ class TestLogin():
         assert  WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(MainPageLocators.USER_LOGO))
         assert driver.find_element(*MainPageLocators.USER_NAME).text == "User."
 
-    def test_succesfull_logout(self, driver: WebDriver, main_page, email, password, create_account, teardown):
+    def test_succesfull_logout(self, driver: WebDriver, main_page, email, password, create_account):
         # Проверки  переход на главную страницу
         WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(MainPageLocators.USER_LOGO))
         # Нажать на кнопку "Выйти"
         driver.find_element(*MainPageLocators.EXIT_BUTTON).click()
         # Нажать на кнопку "Вход и регистрация"
-        driver.find_element(*MainPageLocators.LOGGIN_BUTTON).click()
+        WebDriverWait(driver, 5).until(expected_conditions.element_to_be_clickable(MainPageLocators.LOGGIN_BUTTON)).click()
         # Ввод логина и пароля созданного аккаунта
         driver.find_element(*LoginForm.INPUT_EMAIL).send_keys(email)
         driver.find_element(*LoginForm.INPUT_PASSWORD).send_keys(password)
